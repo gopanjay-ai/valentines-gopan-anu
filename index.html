@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Valentine’s Day, My Love ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff4e7a, #ff8fa3);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .hearts span {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    header { padding: 70px 20px; }
+    h1 { font-size: 3rem; }
+    h2 { font-weight: 300; margin-bottom: 30px; }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    button {
+      padding: 14px 26px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: #fff;
+      color: #ff4e7a;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.07);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    section { display: none; padding: 50px 20px; animation: fadeIn 1s ease; }
+
+    .gallery img {
+      width: 260px;
+      max-width: 90%;
+      border-radius: 20px;
+      margin: 15px;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    }
+
+    .slideshow {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .slideshow img { max-width: 90%; max-height: 90%; border-radius: 20px; }
+
+    .counter { font-size: 1.4rem; margin-top: 20px; }
+
+    footer { padding: 30px; font-size: 0.9rem; opacity: 0.9; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="hearts"></div>
+
+<audio id="music" src="https://cdn.pixabay.com/download/audio/2022/02/23/audio_4b1c6b2e2d.mp3?filename=romantic-love-story-110230.mp3" loop autoplay></audio>
+
+<header>
+  <h1>Happy Valentine’s Day, My Love ❤️</h1>
+  <h2>Gopan & Anu</h2>
+
+  <div class="buttons">
+    <button onclick="showSection('memories')">💑 Our Memories</button>
+    <button onclick="showSection('wedding')">🌹 Wedding Day</button>
+    <button onclick="showSection('note')">💌 Love Note</button>
+    <button onclick="toggleMusic()">🎶 Music</button>
+    <button onclick="unlockSecret()">🔐 Secret</button>
+  </div>
+
+  <div class="counter" id="counter"></div>
+</header>
+
+<section id="memories" class="gallery">
+  <h2>Our Beautiful Moments</h2>
+  <img src="photo1.jpg" onclick="openSlide(this.src)">
+  <img src="photo2.jpg" onclick="openSlide(this.src)">
+  <img src="photo3.jpg" onclick="openSlide(this.src)">
+  <img src="photo4.jpg" onclick="openSlide(this.src)">
+  <img src="photo5.jpg" onclick="openSlide(this.src)">
+</section>
+
+<section id="wedding" class="gallery">
+  <h2>Our Wedding Day 💍</h2>
+  <img src="photo3.jpg" onclick="openSlide(this.src)">
+</section>
+
+<section id="note">
+  <h2>To My Love, Anu 💖</h2>
+  <p>
+    From the moment our paths crossed on February 2nd, 2025, something quietly beautiful began.
+    What started as a meeting soon became comfort, laughter, trust, and a love I never knew could feel this complete.
+  </p>
+  <p>
+    With you, life feels calmer and brighter. Your smile steadies me, your presence feels like home,
+    and every day with you teaches me what love truly means.
+  </p>
+  <p>
+    Thank you for choosing me, for believing in us, and for filling my life with warmth and meaning.
+    I promise to walk beside you in every season, holding your hand through all of life’s ups and downs.
+  </p>
+  <p><strong>Forever yours,<br/>Gopan ❤️</strong></p>
+</section>
+
+<section id="secret">
+  <h2>My Secret Promise 🤍</h2>
+  <p>No matter where life takes us, my hand will always find yours.</p>
+</section>
+
+<div class="slideshow" id="slideshow" onclick="this.style.display='none'">
+  <img id="slideImg">
+</div>
+
+<footer>
+  Made with ❤️ by Gopan, just for Anu
+</footer>
+
+<!-- Final Love Reveal -->
+<div id="loveReveal" style="display:none; position:fixed; inset:0; background:linear-gradient(135deg,#ff2f68,#ff8fa3); color:white; z-index:2000; align-items:center; justify-content:center; flex-direction:column; font-size:3rem; animation: fadeIn 2s ease;">
+  <div style="animation: scaleUp 2s ease forwards;">I LOVE YOU ❤️</div>
+</div>
+<style>
+@keyframes scaleUp { from { transform: scale(0.5); opacity:0;} to { transform: scale(1.2); opacity:1;} }
+</style>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('section').forEach(s => s.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
+  }
+
+  function toggleMusic() {
+    const m = document.getElementById('music');
+    m.paused ? m.play() : m.pause();
+  }
+
+  function unlockSecret() {
+    const pass = prompt('Enter our secret code ❤️');
+    if (pass === 'forever') {
+      showSection('secret');
+      setTimeout(() => {
+        document.getElementById('loveReveal').style.display = 'flex';
+      }, 4000);
+    } else alert('Oops… wrong secret 😉');
+  }
+
+  function openSlide(src) {
+    document.getElementById('slideImg').src = src;
+    document.getElementById('slideshow').style.display = 'flex';
+  }
+
+  // Floating hearts
+  const heartContainer = document.querySelector('.hearts');
+  setInterval(() => {
+    const heart = document.createElement('span');
+    heart.innerText = '❤️';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+    heartContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 8000);
+  }, 500);
+
+  // Together since counter
+  const startDate = new Date('2025-02-02');
+  setInterval(() => {
+    const diff = Date.now() - startDate;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('counter').innerText = `Together for ${days} beautiful days 💕`;
+  }, 1000);
+</script>
+
+</body>
+</html>
